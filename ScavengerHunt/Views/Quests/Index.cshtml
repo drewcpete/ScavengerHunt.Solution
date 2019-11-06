@@ -1,0 +1,25 @@
+@using ScavengerHunt.Models;
+@model IEnumerable<ScavengerHunt.Models.Quest>
+
+<div class ="jumbotron">
+<h1>Wellcome to The Scavenger Hunt!</h1>
+</div>
+@if (Model.Any())
+{
+  <h3>
+    @foreach (Quest quest in Model)
+    {
+      <li>@Html.ActionLink($"{quest.Name}", "Details", new { id = quest.QuestId }) </li>
+    }
+  </h3>
+} 
+else
+{
+  <h3>No quests have been added yet!</h3>
+}
+<br>
+
+<p>@Html.ActionLink("Add new quest", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+</div>
