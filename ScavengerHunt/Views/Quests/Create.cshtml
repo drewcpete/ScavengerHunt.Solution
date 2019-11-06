@@ -6,13 +6,13 @@
 {
     <div class ="headline">
         
-            @Html.LabelFor(model => model.Name)
+           <h5>Name your Quest</h5>
             @Html.TextBoxFor(model => model.Name)
             <br>
-            @Html.LabelFor(model => model.QuestRules)
+            <h5>What should the rules be?</h5>
             @Html.TextAreaFor(model => model.QuestRules)
             <br>
-            @Html.Label("Select Items to search for")
+            <h5>Select Items to search for</h5>            
             @Html.DropDownList("ItemId")
             @Html.DropDownList("ItemId", string.Empty)
             @Html.DropDownList("ItemId", string.Empty)

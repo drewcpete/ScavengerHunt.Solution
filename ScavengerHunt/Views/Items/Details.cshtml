@@ -13,7 +13,8 @@
 </div>
 
 <div class ="column.middle">
-  <h3>@Html.DisplayNameFor(model => model.ItemRules): @Html.DisplayFor(model => model.ItemRules)</h3>
+  <h3>Item Rules: </h3>
+  <p>@Html.DisplayFor(model => model.ItemRules)</p>
 
     @if(@Model.Quests.Count == 0)
   {
