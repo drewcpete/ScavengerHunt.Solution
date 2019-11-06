@@ -1,15 +1,26 @@
 
 @model ScavengerHunt.Models.Item
 
-<h3>Fill out this information to add a Item!</h3>
-
-@using(Html.BeginForm())
+<div class ="jumbotron">
+<h4>Add a new Item</h4>
+</div>
+@using (Html.BeginForm())
 {
-    <div class="form-group">
-        @Html.LabelFor(model => model.ItemName)
-        @Html.TextBoxFor(model => model.ItemName, new {@class="form-control"})
-        @Html.LabelFor(model => model.ItemRules)
-        @Html.TextBoxFor(model => model.ItemRules, new {@class="form-control"})
+    <div class ="headline">
+        
+            @Html.LabelFor(model => model.ItemName)
+            @Html.TextBoxFor(model => model.ItemName)
+            <br>
+            @Html.LabelFor(model => model.ItemRules)
+            @Html.TextAreaFor(model => model.ItemRules)
+            <br>
+        
+    <input type="submit" value="Add new item" class="btn default" />
+    <br>
+    <p>@Html.ActionLink("Show all Items", "Index")</p>
     </div>
-    <input class="btn btn-info" type="submit" value="Save New Item">
+    
+
+   
+   
 }
