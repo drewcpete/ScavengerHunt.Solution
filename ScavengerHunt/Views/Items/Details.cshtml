@@ -1,0 +1,62 @@
+
+@using System.Collections.Generic;
+@using ScavengerHunt.Models;
+@model ScavengerHunt.Models.Item;
+
+<div class ="jumbotron">
+
+<h2>Item Rules</h2>
+</div>
+<hr />
+<div class ="header">
+  <h3>@Html.DisplayFor(model => model.ItemName)</h3>
+</div>
+
+<div class ="column.middle">
+  <h3>@Html.DisplayNameFor(model => model.ItemRules): @Html.DisplayFor(model => model.ItemRules)</h3>
+
+    @if(@Model.Quests.Count == 0)
+  {
+    <p>This item does not have any quests associated to it</p>
+  }
+  else
+  {
+
+    <h4>Items for this quest to:</h4>
+    
+    @foreach(var join in Model.Quests)
+    {
+      <li class="font-weight-bold">@join.Item.ItemName</li>
+      @using (Html.BeginForm("DeleteItem", "Items"))
+      {
+        @Html.Hidden("joinId", @join.QuestItemId) 
+        <input type="submit" value="Delete" class="btn default"/>
+      }
+    }
+    
+  }
+
+  
+  
+
+</div>
+<div class ="column.side">
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</p>
+<p>@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId })</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
