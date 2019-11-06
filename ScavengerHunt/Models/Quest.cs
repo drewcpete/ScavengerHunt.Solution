@@ -13,7 +13,7 @@ namespace ScavengerHunt.Models
 
         public int QuestId { get; set; }
         public string Name { get; set; }
-        public string Rules { get; set; }
+        public string QuestRules { get; set; }
         public ICollection<QuestItem> Item { get; }
 
     }
