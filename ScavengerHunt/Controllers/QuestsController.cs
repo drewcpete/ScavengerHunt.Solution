@@ -31,7 +31,7 @@ namespace ScavengerHunt.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.TagId = new SelectList(_db.Items, "ItemsId", "ItemName");
+            ViewBag.ItemId = new SelectList(_db.Items, "ItemsId", "ItemName");
             return View();
         }
 
