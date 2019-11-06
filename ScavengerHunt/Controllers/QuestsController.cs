@@ -1,62 +1,128 @@
 using Microsoft.AspNetCore.Mvc;
 using ScavengerHunt.Models;
-using ScavengerHunt.Data;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
+using ScavengerHunt.Data;
 
 namespace ScavengerHunt.Controllers
 {
+    [Authorize]
     public class QuestsController : Controller
     {
         private readonly ApplicationDbContext _db;
+       
 
-        public QuestsController(ApplicationDbContext db)
+        public QuestsController( ApplicationDbContext db)
         {
             _db = db;
         }
-        public ActionResult Index()
+
+        public  ActionResult Index()
         {
-            List<Quest> model = _db.Quests.ToList();
-            return View(model);
+        
+            return View();
         }
 
         public ActionResult Create()
         {
-            ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "Name");
+            ViewBag.TagId = new SelectList(_db.Items, "ItemsId", "ItemName");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Quest quest)
+        public ActionResult Create(Quest quest, int ItemId)
         {
+            
             _db.Quests.Add(quest);
+            if (ItemId != 0)
+            {
+                _db.QuestItems.Add(new QuestItem() { ItemId = ItemId, QuestId = quest.QuestId });
+            }
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public ActionResult Details(int id)
         {
-            Quest thisQuest = _db.Quests.FirstOrDefault(quests => quests.QuestId == id);
+            var thisQuest = _db.Quests
+               
+                .Include(quest => quest.Item)
+                .ThenInclude(join => join.Item)
+                .FirstOrDefault(quest => quest.QuestId == id);
             return View(thisQuest);
         }
-        [HttpGet]
+
         public ActionResult Edit(int id)
         {
+            var thisQuest = _db.Quests.FirstOrDefault(quest => quest.QuestId == id);
 
-            Quest thisQuest = _db.Quests.FirstOrDefault(quests => quests.QuestId == id);
-
+            ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "ItemName");
             return View(thisQuest);
         }
 
         [HttpPost]
-        public ActionResult Edit(Quest quest)
+        public ActionResult Edit(Quest quest, int ItemId)
         {
+            
+            if (ItemId != 0)
+            {
+                _db.QuestItems.Add(new QuestItem() { ItemId = ItemId, QuestId = quest.QuestId });
+            }
             _db.Entry(quest).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-    }
+        
+        public ActionResult AddItem(int id)
+        {
+            var thisQuest = _db.Quests.FirstOrDefault(quest => quest.QuestId == id);
+            ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "ItemName");
+            return View(thisQuest);
+        }
 
+        [HttpPost]
+        public ActionResult AddItem(Quest quest, int ItemId)
+        {
+            if (ItemId != 0)
+            {
+                _db.QuestItems.Add(new QuestItem() { ItemId = ItemId, QuestId = quest.QuestId });
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var thisQuest = _db.Quests.FirstOrDefault(quest => quest.QuestId == id);
+            return View(thisQuest);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var thisQuest = _db.Quests.FirstOrDefault(quest => quest.QuestId == id);
+            _db.Quests.Remove(thisQuest);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteItem(int joinId)
+        {
+            var joinEntry = _db.QuestItems.FirstOrDefault(entry => entry.QuestItemId == joinId);
+            _db.QuestItems.Remove(joinEntry);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+    
+    }
 }
