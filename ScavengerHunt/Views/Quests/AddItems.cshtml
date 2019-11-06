@@ -1,0 +1,18 @@
+@model ScavengerHunt.Models.Quest
+
+<div class = "jumbotron">
+<h2>Add a Item for the quest</h2>
+</div>
+<h4>Add a Item for this Quest: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.QuestId)
+
+        @Html.Label("Select Item")
+        @Html.DropDownList("ItemId")
+
+        < input type = "submit" value = "Save" class ="btn default" />
+    }
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
