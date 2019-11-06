@@ -2,7 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1> Welcome to T-Rex's Scavenger Hunt! </h1>
+
+<h2>@Html.ActionLink("How does it work?", "How")</h2>
+<h2>@Html.ActionLink("Rules", "Rules")</h2>
+<h2>@Html.ActionLink("Disclaimer", "Disclaimer")</h2>
+
+<hr/>
+
+<button >@Html.ActionLink("Lets Play!", "Index", "Quests")</button>
