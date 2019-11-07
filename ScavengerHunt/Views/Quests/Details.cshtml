@@ -2,34 +2,34 @@
 @using ScavengerHunt.Models;
 @model ScavengerHunt.Models.Quest;
 
-<div class ="jumbotron">
 
-<h2>Quest Rules</h2>
-</div>
+
+<h1>Quest!</h1>
+
 <hr />
 <div class ="header">
   <h3>@Html.DisplayFor(model => model.Name)</h3>
 </div>
 
 <div class ="column.middle">
-  <h3>@Html.DisplayNameFor(model => model.QuestRules): @Html.DisplayFor(model => model.QuestRules)</h3>
+  <h3>Quest rules: @Html.DisplayFor(model => model.QuestRules)</h3>
 
     @if(@Model.Item.Count == 0)
   {
-    <p>This quest does not have any Items associated to it</p>
+    <p>This quest does not have any items associated with it</p>
   }
   else
   {
 
-    <h4>Items for this quest to:</h4>
+    <h4>To complete this quest:</h4>
     
     @foreach(var join in Model.Item)
     {
-      <li class="font-weight-bold">@join.Item.ItemName</li>
+      <li class="font-weight-bold">@join.Item.ItemRules</li>
       @using (Html.BeginForm("DeleteItem", "Quests"))
       {
         @Html.Hidden("joinId", @join.QuestItemId) 
-        <input type="submit" value="Delete" class="btn default"/>
+        <button class="player-button"><input type="submit" value="Delete" class="btn btn-default"/></button>
       }
     }
     
@@ -40,11 +40,11 @@
 
 </div>
 <div class ="column.side">
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Quest", "Edit", new { id = Model.QuestId })</p>
+<p>@Html.ActionLink("Back to quests", "Index")</p>
+
 <p>@Html.ActionLink("Delete Quest", "Delete", new { id = Model.QuestId })</p>
-<p>@Html.ActionLink("Add a Tag", "AddTag", new { id = Model.QuestId })</p>
-<p>@Html.ActionLink("Add an Item", "AddItem", new { id = Model.QuestId})</p>
+
+<p>@Html.ActionLink("Add an Item", "AddItems", "Quests")</p>
 
 
 </div>

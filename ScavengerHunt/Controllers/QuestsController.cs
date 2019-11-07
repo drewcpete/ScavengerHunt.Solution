@@ -4,29 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using ScavengerHunt.Data;
+
 
 namespace ScavengerHunt.Controllers
 {
-    [Authorize]
+     
     public class QuestsController : Controller
     {
         private readonly ApplicationDbContext _db;
-       
 
-        public QuestsController( ApplicationDbContext db)
+
+        public QuestsController(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public  ActionResult Index()
+        public ActionResult Index()
         {
-        
-            return View();
+            List<Quest> model = _db.Quests.ToList();
+            return View(model);
         }
 
         public ActionResult Create()
@@ -38,7 +34,7 @@ namespace ScavengerHunt.Controllers
         [HttpPost]
         public ActionResult Create(Quest quest, int ItemId)
         {
-            
+
             _db.Quests.Add(quest);
             if (ItemId != 0)
             {
@@ -51,7 +47,7 @@ namespace ScavengerHunt.Controllers
         public ActionResult Details(int id)
         {
             var thisQuest = _db.Quests
-               
+
                 .Include(quest => quest.Item)
                 .ThenInclude(join => join.Item)
                 .FirstOrDefault(quest => quest.QuestId == id);
@@ -69,7 +65,7 @@ namespace ScavengerHunt.Controllers
         [HttpPost]
         public ActionResult Edit(Quest quest, int ItemId)
         {
-            
+
             if (ItemId != 0)
             {
                 _db.QuestItems.Add(new QuestItem() { ItemId = ItemId, QuestId = quest.QuestId });
@@ -79,8 +75,8 @@ namespace ScavengerHunt.Controllers
             return RedirectToAction("Index");
         }
 
-        
-        public ActionResult AddItem(int id)
+
+        public ActionResult AddItems(int id)
         {
             var thisQuest = _db.Quests.FirstOrDefault(quest => quest.QuestId == id);
             ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "ItemName");
@@ -88,7 +84,7 @@ namespace ScavengerHunt.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddItem(Quest quest, int ItemId)
+        public ActionResult AddItems(Quest quest, int ItemId)
         {
             if (ItemId != 0)
             {
@@ -123,6 +119,6 @@ namespace ScavengerHunt.Controllers
             return RedirectToAction("Index");
         }
 
-    
+
     }
 }

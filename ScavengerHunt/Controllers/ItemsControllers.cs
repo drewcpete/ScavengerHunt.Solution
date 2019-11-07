@@ -3,7 +3,7 @@ using ScavengerHunt.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ScavengerHunt.Data;
+
 
 namespace ScavengerHunt.Controllers
 {

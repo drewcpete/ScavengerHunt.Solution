@@ -1,12 +1,97 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+h1 {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 3vmax;
 }
 
+h2 {
+  font-family: 'Crushed', cursive;
+  text-align: center;
+}
+
+h3 {
+  font-family: 'Titan One', cursive;
+}
+
+h4 {
+  font-family: 'Crushed', cursive;
+}
+p{
+  font-family: 'Crushed', cursive;
+  font-size: 2.5vmax;
+}
+
+#add-quest {
+  border-radius: 50%;
+  height: 7vmax;
+  width: 7vmax;
+  font-family: 'Titan One', cursive;
+  font-size: 1.2vmax;
+  text-align: center;
+  box-shadow: 0 9px #999;
+  background-color: rgb(82, 80, 80);
+
+}
+
+.headline {
+  font-family: 'Crushed', cursive;
+  font-size: 1.5vmax;
+}
+
+.play-button{
+  border-radius: 50%;
+  height: 5vmax;
+  width: 5vmax;
+  font-family: 'Titan One', cursive;
+}
+
+
+button {
+  /* display: inline-block; */
+  /* padding: 15px 25px; */
+  /* font-size: 24px; */
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  font-size: 1vmax;
+}
+
+button:hover {background-color: rgb(27, 27, 27)}
+
+button:active {
+  background-color: rgb(27, 27, 27);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+          a.navbar-brand {
+            white-space: normal;
+            text-align: center;
+            word-break: break-all;
+          }
+
+.card {
+  background-image: url("../portland.jpg");
+  background-size: cover;
+  width: 25vmax;
+  height: 25vmax;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  background-repeat: no-repeat;
+  /* height: 40vmax; */
+  border-style: inset;
+  border-color: rgb(121, 45, 10);
+  border-width: 1vmax;
+
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -43,9 +128,16 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  position: fixed;
+  /* vignette */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
+  text-align: center;
 }
-.footer {
+.footer, nav {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -53,4 +145,21 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
+  background-image: url("../map.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
 }
+
+#homeLink{
+  color: red;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3vmax;
+}
+
+/* font-family: 'Aclonica', sans-serif;
+font-family: 'Titan One', cursive;
+font-family: 'Bungee Inline', cursive;
+font-family: 'Crushed', cursive;
+font-family: 'Bungee Shade', cursive; */

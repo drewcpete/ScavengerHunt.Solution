@@ -8,11 +8,10 @@
 @using (Html.BeginForm())
     {
         @Html.HiddenFor(model => model.QuestId)
+        @Html.Label("Add Item")
+        @Html.TextAreaFor(model => model.QuestRules)
 
-        @Html.Label("Select Item")
-        @Html.DropDownList("ItemId")
-
-        < input type = "submit" value = "Save" class ="btn default" />
+        <input type = "submit" value = "Save" class ="btn default" />
     }
 
 <p>@Html.ActionLink("Back to list", "Index")</p>

@@ -1,29 +1,30 @@
 @model ScavengerHunt.Models.Quest
-<div class ="jumbotron">
-<h4>Add a new Quest</h4>
-</div>
+
+<h1>Add a new Quest</h1>
+
 @using (Html.BeginForm())
 {
     <div class ="headline">
         
-           <h5>Name your Quest</h5>
+            @Html.LabelFor(model => model.Name)
             @Html.TextBoxFor(model => model.Name)
             <br>
-            <h5>What should the rules be?</h5>
+            @Html.Label("Quest Rules")
             @Html.TextAreaFor(model => model.QuestRules)
             <br>
-            <h5>Select Items to search for</h5>            
+            @Html.Label("Select Items to search for")
             @Html.DropDownList("ItemId")
             @Html.DropDownList("ItemId", string.Empty)
             @Html.DropDownList("ItemId", string.Empty)
             @Html.DropDownList("ItemId", string.Empty)
             @Html.DropDownList("ItemId", string.Empty)
             <br>
-            
-        
-    <input type="submit" value="Add new item" class="btn default" />
+    <hr/>
+   <div class="questbutton">   
+     <input type="submit" value="Add Item" id="add-quest"/>
+   </div> 
     <br>
-    <p>@Html.ActionLink("Show all Quest", "Index")</p>
+    <p>@Html.ActionLink("Show all Quests", "Index")</p>
     </div>
     
 
