@@ -1,5 +1,10 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+h5, li{
+  text-align: left;
+  font-family: 'Crushed', cursive;
+  font-size: 2.5vmax;
+}
 
 h1 {
   font-family: 'Bungee Shade', cursive;
@@ -22,6 +27,7 @@ p{
   font-family: 'Crushed', cursive;
   font-size: 2.5vmax;
 }
+
 
 #quest-items{
   border-radius: 20%;

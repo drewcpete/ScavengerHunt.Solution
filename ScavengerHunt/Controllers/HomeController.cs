@@ -14,6 +14,18 @@ namespace ScavengerHunt.Controllers
         {
             return View();
         }
+         public IActionResult How()
+        {
+            return View();
+        }
+         public IActionResult Disclaimer()
+        {
+            return View();
+        }
+         public IActionResult Rules()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
