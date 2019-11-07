@@ -169,3 +169,8 @@ font-family: 'Titan One', cursive;
 font-family: 'Bungee Inline', cursive;
 font-family: 'Crushed', cursive;
 font-family: 'Bungee Shade', cursive; */
+
+
+#map {
+  height: 500px;
+}
