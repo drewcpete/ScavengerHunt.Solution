@@ -162,6 +162,7 @@ body {
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
+    
 }
 
 #homeLink{
@@ -169,6 +170,7 @@ body {
   font-family: 'Permanent Marker', cursive;
   font-size: 3vmax;
 }
+
 
 /* font-family: 'Aclonica', sans-serif;
 font-family: 'Titan One', cursive;
