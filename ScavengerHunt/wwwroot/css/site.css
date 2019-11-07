@@ -23,6 +23,12 @@ p{
   font-size: 2.5vmax;
 }
 
+#quest-items{
+  border-radius: 20%;
+  border-top: solid;
+  border-bottom: solid;
+}
+
 #add-quest {
   border-radius: 50%;
   height: 7vmax;

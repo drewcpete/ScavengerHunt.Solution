@@ -4,15 +4,15 @@
 
 
 
-<h1>Quest!</h1>
-
-<hr />
 <div class ="header">
-  <h3>@Html.DisplayFor(model => model.Name)</h3>
+  <h1>@Html.DisplayFor(model => model.Name)</h1>
 </div>
 
+<hr />
+
+
 <div class ="column.middle">
-  <h3>Quest rules: @Html.DisplayFor(model => model.QuestRules)</h3>
+  <h3>Quest rules:<br> @Html.DisplayFor(model => model.QuestRules)</h3><hr/>
 
     @if(@Model.Item.Count == 0)
   {
@@ -20,19 +20,21 @@
   }
   else
   {
-
     <h4>To complete this quest:</h4>
-    
-    @foreach(var join in Model.Item)
-    {
-      <li class="font-weight-bold">@join.Item.ItemRules</li>
-      @using (Html.BeginForm("DeleteItem", "Quests"))
-      {
-        @Html.Hidden("joinId", @join.QuestItemId) 
-        <button class="player-button"><input type="submit" value="Delete" class="btn btn-default"/></button>
-      }
-    }
-    
+     <div class = "row">
+        @foreach(var join in Model.Item)
+        {
+            <div id="quest-items" class = "col-md-3">
+              <h4>@join.Item.ItemRules</h4>
+              <input type="checkbox" class="checkbox">
+              @using (Html.BeginForm("DeleteItem", "Quests"))
+              {
+              @* @Html.Hidden("joinId", @join.QuestItemId) 
+                <button class="player-button"><input type="submit" value="Delete" class="btn btn-default"/></button> *@
+              }
+            </div>
+        }<br>
+      </div>
   }
 
   
@@ -42,9 +44,9 @@
 <div class ="column.side">
 <p>@Html.ActionLink("Back to quests", "Index")</p>
 
-<p>@Html.ActionLink("Delete Quest", "Delete", new { id = Model.QuestId })</p>
+@*<p>@Html.ActionLink("Delete Quest", "Delete", new { id = Model.QuestId })</p>
 
-<p>@Html.ActionLink("Add an Item", "AddItems", "Quests")</p>
+<p>@Html.ActionLink("Add an Item", "AddItems", "Quests")</p>*@
 
 
 </div>

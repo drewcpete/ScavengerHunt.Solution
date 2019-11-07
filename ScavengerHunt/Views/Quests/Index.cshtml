@@ -3,23 +3,22 @@
 
 
 <h1>Welcome to The Scavenger Hunt!</h1>
+<h2>Choose your adventure</h2>
 <hr/>
 @if (Model.Any())
 {
-  <h3>
-    @foreach (Quest quest in Model)
-    {
-      <li>@Html.ActionLink($"{quest.Name}", "Details", new { id = quest.QuestId }) </li>
-    }
-  </h3>
+  <div class="row">
+    
+      @foreach (Quest quest in Model)
+      {
+        <div id="quest-items" class = "col-md-3">
+          <h3>@Html.ActionLink($"{quest.Name}", "Details", new { id = quest.QuestId })</h3>
+        </div>
+      }
+    
+  </div>
 } 
 else
 {
   <h3>No quests have been added yet!</h3>
 }
-<br>
-
-<p>@Html.ActionLink("Add new quest", "Create")</p>
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
-</div>

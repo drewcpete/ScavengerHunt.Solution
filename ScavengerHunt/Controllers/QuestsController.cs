@@ -116,7 +116,7 @@ namespace ScavengerHunt.Controllers
             var joinEntry = _db.QuestItems.FirstOrDefault(entry => entry.QuestItemId == joinId);
             _db.QuestItems.Remove(joinEntry);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details");
         }
 
 
